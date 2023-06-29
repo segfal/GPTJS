@@ -17,14 +17,19 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 
-
 //asynch function to 
-const getResponse = async (msg) => {
+const getResponse = async (msg = "",msgs = []) => {
+    msgs.push({
+        role: "user",
+        content: msg
+
+    });
     const chatCompletion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: msg}],
+        messages: msgs,
 
       });
+    
     return chatCompletion;
 
 
@@ -33,8 +38,11 @@ const getResponse = async (msg) => {
 //using fetch
 
 
-
 //export the function
+
+
+
+
 
 
 
